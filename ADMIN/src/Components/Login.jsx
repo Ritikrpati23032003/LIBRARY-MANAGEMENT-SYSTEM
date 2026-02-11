@@ -13,7 +13,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://library-management-system-backend-nac4.onrender.com/api/auth/login", { username, password })
+      .post("${url}/api/auth/login")
       .then((response) => {
         if (response.data.role === "admin") {
           localStorage.setItem("admin_token", response.data.token);
