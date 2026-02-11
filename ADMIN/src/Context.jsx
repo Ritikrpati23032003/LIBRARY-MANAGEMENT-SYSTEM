@@ -5,7 +5,7 @@ export const StoreContext = createContext();
 
 export const StoreContextProvider = ({ children }) => {
     const [adminToken, setAdminToken] = useState("");
-    #const url = "https://library-management-system-backend-nac4.onrender.com/";
+    //const url = "https://library-management-system-backend-nac4.onrender.com/";
     const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 
@@ -19,7 +19,8 @@ export const StoreContextProvider = ({ children }) => {
     const storeVal = {
         adminToken,
         setAdminToken,
-        url,
+        //url
+        API_BASE_URL,
     };
 
     return (
