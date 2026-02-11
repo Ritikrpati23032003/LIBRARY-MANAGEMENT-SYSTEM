@@ -10,3 +10,10 @@ sudo curl -SL https://github.com/docker/compose/releases/download/v2.27.0/docker
 sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
 sudo usermod -aG docker $USER
 newgrp docker
+
+#----------Run Docker Compose--------------#
+docker compose build
+docker compose up -d
+
+#-----Delete container &  image ------------------------#
+docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker rmi -f $(docker images -q) && docker volume rm $(docker volume ls -q) && docker network prune -f
