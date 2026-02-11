@@ -25,3 +25,16 @@ openssl rand -hex 32
 
 o/p:-5889......
 copy it  paste on backend .env
+
+
+#---------execute mongo command-----------#
+
+docker exec -it library-mongo mongosh
+use libraryDB
+db.admins.insertOne({
+  name: "Admin",
+  email: "admin@gmail.com",
+  password: "123456",
+  role: "admin",
+  createdAt: new Date()
+})
