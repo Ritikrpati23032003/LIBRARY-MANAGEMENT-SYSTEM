@@ -17,3 +17,11 @@ docker compose up -d
 
 #-----Delete container &  image ------------------------#
 docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker rmi -f $(docker images -q) && docker volume rm $(docker volume ls -q) && docker network prune -f
+
+#-------------------------JWT-------------------#
+For create a JWT KEY Run:---
+
+openssl rand -hex 32
+
+o/p:-5889......
+copy it  paste on backend .env
