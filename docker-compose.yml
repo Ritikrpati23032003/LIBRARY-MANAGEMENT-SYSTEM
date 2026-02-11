@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: library-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./BACKEND
+    container_name: library-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/libraryDB
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./FRONTEND
+    container_name: library-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"   # Access frontend at localhost:3000
+    depends_on:
+      - backend
+
+  admin:
+    build: ./ADMIN
+    container_name: library-admin
+    restart: unless-stopped
+    ports:
+      - "3001:80"   # Access admin panel at localhost:3001
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
