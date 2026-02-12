@@ -31,10 +31,24 @@ copy it  paste on backend .env
 
 docker exec -it library-mongo mongosh
 use libraryDB
-db.admins.insertOne({
-  name: "Admin",
-  email: "admin@gmail.com",
-  password: "123456",
-  role: "admin",
+
+db.users.insertOne({
+  name: "Ritik", 
+  username: "ritik",                
+  email: "ritik@gmail.com", 
+  password: "123456",              
+  role: "admin", 
+  rollNo: "ADMIN001",       // must be unique
   createdAt: new Date()
 })
+
+check inside backend container working or not----------------------
+
+docker exec -it library-backend sh
+
+curl -X POST http://localhost:5000/api/auth/login \
+-H "Content-Type: application/json" \
+-d '{"username":"ritik","password":"123456"}'
+
+if it successfull check it 
+http:<publicip>:3000/ login : ritik and give password
