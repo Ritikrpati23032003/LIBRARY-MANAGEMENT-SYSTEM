@@ -13,7 +13,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("${url}/api/auth/login")
+      .post(`${url}/api/auth/login`) 
       .then((response) => {
         if (response.data.role === "admin") {
           localStorage.setItem("admin_token", response.data.token);
