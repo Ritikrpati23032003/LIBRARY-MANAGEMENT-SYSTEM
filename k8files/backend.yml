@@ -29,7 +29,7 @@ metadata:
   name: backend-service
   namespace: library
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: backend
   ports:
