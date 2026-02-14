@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: seller
-  namespace: ecommerce
+  name: library-admin
+  namespace: library
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: seller
+      app: admin
   template:
     metadata:
       labels:
-        app: seller
+        app: admin
     spec:
       containers:
-        - name: seller
-          image: 301678011164.dkr.ecr.us-east-1.amazonaws.com/ecommerce-seller:f663a02
+        - name: admin
+          image: 738983679783.dkr.ecr.ap-south-1.amazonaws.com/library-admin:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -23,12 +23,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: seller
-  namespace: ecommerce
+  name: admin-service
+  namespace: library
 spec:
   type: LoadBalancer
   selector:
-    app: seller
+    app: admin
   ports:
-    - port: 5174        # External port
-      targetPort: 80    # Container port
+    - port: 3001
+      targetPort: 80
