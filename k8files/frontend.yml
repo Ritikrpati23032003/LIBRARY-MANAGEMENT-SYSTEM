@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
-  namespace: ecommerce
+  name: library-frontend
+  namespace: library
 spec:
   replicas: 2
   selector:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: 301678011164.dkr.ecr.us-east-1.amazonaws.com/ecommerce-frontend:f663a02
+          image: 738983679783.dkr.ecr.ap-south-1.amazonaws.com/library-frontend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -23,12 +23,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
-  namespace: ecommerce
+  name: frontend-service
+  namespace: library
 spec:
   type: LoadBalancer
   selector:
     app: frontend
   ports:
-    - port: 5173        # External port
-      targetPort: 80    # Container port
+    - port: 3000       # External port
+      targetPort: 80   # Container port
