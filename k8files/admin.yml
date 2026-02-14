@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seller
+  namespace: ecommerce
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: seller
+  template:
+    metadata:
+      labels:
+        app: seller
+    spec:
+      containers:
+        - name: seller
+          image: 301678011164.dkr.ecr.us-east-1.amazonaws.com/ecommerce-seller:f663a02
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seller
+  namespace: ecommerce
+spec:
+  type: LoadBalancer
+  selector:
+    app: seller
+  ports:
+    - port: 5174        # External port
+      targetPort: 80    # Container port
