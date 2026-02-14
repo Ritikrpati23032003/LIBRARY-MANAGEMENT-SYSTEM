@@ -1,8 +1,7 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo
+  name: library-mongo
   namespace: library
 spec:
   replicas: 1
@@ -16,30 +15,19 @@ spec:
     spec:
       containers:
         - name: mongo
-          image: mongo:7
+          image: mongo:6
           ports:
             - containerPort: 27017
-          env:
-            - name: MONGO_INITDB_ROOT_USERNAME
-              value: admin
-            - name: MONGO_INITDB_ROOT_PASSWORD
-              value: 7325APM
-          volumeMounts:
-            - name: mongo-data
-              mountPath: /data/db
-      volumes:
-        - name: mongo-data
-          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo
+  name: mongo-service
   namespace: library
 spec:
-  type: LoadBalancer
   selector:
     app: mongo
   ports:
     - port: 27017
       targetPort: 27017
+  clusterIP: None
