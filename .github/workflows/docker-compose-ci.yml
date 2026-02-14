@@ -71,9 +71,9 @@ jobs:
       # 📝 Update Kubernetes YAML files
       - name: Update Kubernetes Manifests
         run: |
-          sed -i "s|\(library-frontend:\).*|\1${IMAGE_TAG}|g" k8files/frontend.yaml
-          sed -i "s|\(library-backend:\).*|\1${IMAGE_TAG}|g" k8files/backend.yaml
-          sed -i "s|\(library-admin:\).*|\1${IMAGE_TAG}|g" k8files/admin.yaml
+          sed -i "s|\(library-frontend:\).*|\1${IMAGE_TAG}|g" k8files/frontend.yml
+          sed -i "s|\(library-backend:\).*|\1${IMAGE_TAG}|g" k8files/backend.yml
+          sed -i "s|\(library-admin:\).*|\1${IMAGE_TAG}|g" k8files/admin.yml
 
       # 📌 Commit & Push YAML Updates
       - name: Commit and Push Updated YAMLs
