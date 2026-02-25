@@ -52,3 +52,44 @@ curl -X POST http://localhost:5000/api/auth/login \
 
 if it successfull check it 
 http:<publicip>:3000/ login : ritik and give password
+
+
+
+#-------------------------Kuberenetes--------------------------#
+-----Updata data for user-------
+
+kubectl exec -it library-mongo-6c49d86f67-qhsmr -n library -- mongosh
+
+
+use libraryDB
+db.users.insertOne({
+  name: "Ritik",
+  username: "ritik",
+  email: "ritik@gmail.com",
+  password: "123456",
+  role: "admin",
+  rollNo: "ADMIN001",
+  createdAt: new Date()
+})
+
+
+
+kubectl exec -it library-backend-698b5c55f6-26ngm -n library -- sh
+
+curl -X POST http://localhost:5000/api/auth/login \
+-H "Content-Type: application/json" \
+-d '{"username":"ritik","password":"123456"}'
+
+o/p:token it means success
+
+
+kubectl exec -it library-mongo-6c49d86f67-qhsmr -n library -- bash
+
+inside pod run: mongosh
+use admin
+show collections
+
+
+----------------------------------------------------------
+first deploy backend.yml than change lb url in frontend & admin .env
+after that deploy frontend.yml 
