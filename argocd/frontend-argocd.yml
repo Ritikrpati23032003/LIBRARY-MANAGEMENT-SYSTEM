@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: library-frontend
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Ritikrpati23032003/LIBRARY-MANAGEMENT-SYSTEM.git
+    targetRevision: main
+    path: k8files
+    directory:
+      include: frontend.yml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: library
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
