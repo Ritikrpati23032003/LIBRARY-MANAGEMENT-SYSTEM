@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: admin
-          image: 738983679783.dkr.ecr.us-east-1.amazonaws.com/library-admin:cfbf26f
+          image: 738983679783.dkr.ecr.us-east-1.amazonaws.com/library-admin:f03d354
           imagePullPolicy: Always
           ports:
             - containerPort: 80
