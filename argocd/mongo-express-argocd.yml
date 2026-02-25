@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: library-mongo-express
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Ritikrpati23032003/LIBRARY-MANAGEMENT-SYSTEM.git
+    targetRevision: main
+    path: k8files
+    directory:
+      include: mongo-express.yml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: library
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
